@@ -1,6 +1,5 @@
 package com.bcc.gestao.bluevelvet.model.entity;
 
-
 import jakarta.persistence.*;
 
 @Entity
