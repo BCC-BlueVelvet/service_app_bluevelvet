@@ -12,3 +12,6 @@ spring:
     locations:
       classpath: db/migration
     baseline-on-migration: true
+
+  jpa:
+    open-in-view: false
