@@ -1,13 +1,23 @@
-package com;
+package com.bcc.gestao.bluevelvet.model.vo;
 
+import com.bcc.gestao.bluevelvet.model.Product;
+import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-class BluevelvetApplicationTests {
+public class ProductVOTest {
 
 	@Test
-	void contextLoads() {
-	}
+	public void testToEntity() {
+		// Criação de um ProductVO
+		ProductVO productVO = new ProductVO(1L, "Produto 1", 10.0);
 
+		// Conversão para Product
+		Product product = productVO.toEntity();
+
+		// Verificação de que os dados do ProductVO foram corretamente convertidos para o Product
+		assertEquals(productVO.getId(), product.getId());
+		assertEquals(productVO.getName(), product.getName());
+		assertEquals(productVO.getPrice(), product.getPrice());
+	}
 }
