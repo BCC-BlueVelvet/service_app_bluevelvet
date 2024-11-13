@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="092de7b1-e46b-4396-b292-b804cbfb56a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/bluevelvet/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/src/main/java/com/bcc/gestao/bluevelvet/BluevelvetApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluevelvet/src/test/java/com/bcc/gestao/bluevelvet/BluevelvetApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2omLU4wDXc2ZpCxX9Vyw5Vx6GDI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "refactor/package",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="service_app_bluevelvet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="service_app_bluevelvet" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="092de7b1-e46b-4396-b292-b804cbfb56a9" name="Changes" comment="" />
+      <created>1731469819793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731469819793</updated>
+    </task>
+    <servers />
+  </component>
+</project>
