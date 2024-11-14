@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="092de7b1-e46b-4396-b292-b804cbfb56a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/bluevelvet/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/src/main/java/com/bcc/gestao/bluevelvet/BluevelvetApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluevelvet/src/test/java/com/bcc/gestao/bluevelvet/BluevelvetApplicationTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="092de7b1-e46b-4396-b292-b804cbfb56a9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,10 +13,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2omLU4wDXc2ZpCxX9Vyw5Vx6GDI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,7 +25,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactor/package",
+    "git-widget-placeholder": "feature/Create__add__product__endpoint",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
