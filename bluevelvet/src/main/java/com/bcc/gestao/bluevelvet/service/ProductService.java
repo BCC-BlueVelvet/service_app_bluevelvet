@@ -14,6 +14,7 @@ public class ProductService {
 
     public Product save (ProductVO productvo){
         Product product = productvo.toEntity();
-        return product;
+        Product savedProduct = productRepository.save(product);
+        return savedProduct;
     }
 }
