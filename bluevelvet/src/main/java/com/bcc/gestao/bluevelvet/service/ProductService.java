@@ -12,8 +12,8 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product save (ProductVO productvo){
-        Product product = productvo.toEntity();
+    public Product save (ProductVO productVO){
+        Product product = productVO.toEntity();
         Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
