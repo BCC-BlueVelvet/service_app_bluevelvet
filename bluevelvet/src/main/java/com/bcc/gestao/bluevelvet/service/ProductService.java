@@ -8,6 +8,7 @@ import com.bcc.gestao.bluevelvet.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -34,6 +35,10 @@ public class ProductService {
     }
   
     public void delete(int id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()) {
+            throw new ProductNotFoundException("Product already not exists.");
+        }
         productRepository.deleteById(id);
     }
   
