@@ -5,6 +5,7 @@ import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
 import com.bcc.gestao.bluevelvet.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -16,5 +17,9 @@ public class ProductService {
         Product product = productVO.toEntity();
         Product savedProduct = productRepository.save(product);
         return savedProduct;
+    }
+
+    public List<Product> findAll(){
+        return productRepository.findAll();
     }
 }
