@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,12 @@ public class ProductRestController {
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO) {
        Product product = productService.save(productVO);
         return ResponseEntity.status(201).body(product);
+    }
+
+     @PutMapping("/products")
+    public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
+         Product updatedProduct = productService.save(productVO);
+         return ResponseEntity.status(201).body(updatedProduct);
     }
 
     @GetMapping("/products")
