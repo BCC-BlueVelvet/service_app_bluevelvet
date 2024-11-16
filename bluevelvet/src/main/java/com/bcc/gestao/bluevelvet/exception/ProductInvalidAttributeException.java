@@ -1,5 +1,5 @@
 package com.bcc.gestao.bluevelvet.exception;
 
-public class ProductInvalidAttributeException {
+public class ProductInvalidAttributeException extends RuntimeException {
     
 }
