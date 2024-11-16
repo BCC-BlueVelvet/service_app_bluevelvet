@@ -44,7 +44,7 @@ public class ProductRestController {
    
     @PutMapping("/products")
     public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
-         Product updatedProduct = productService.save(productVO);
+         Product updatedProduct = productService.update(productVO);
          return ResponseEntity.status(201).body(updatedProduct);
     }
 
