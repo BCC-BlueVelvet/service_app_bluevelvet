@@ -1,6 +1,7 @@
 package com.bcc.gestao.bluevelvet.service;
 
 import com.bcc.gestao.bluevelvet.exception.ProductConflictException;
+import com.bcc.gestao.bluevelvet.exception.ProductNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Product;
 import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
 import com.bcc.gestao.bluevelvet.repository.ProductRepository;
@@ -24,8 +25,12 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product findByName(String name) { 
-        return productRepository.findByName(name).get();
+    public List<Product> findByName(String name) {
+        List<Product> products = productRepository.findByName(name);
+        if(products.isEmpty()) {
+            throw new ProductNotFoundException(name + " not exists.");
+        }
+        return products;
     }
   
     public void delete(int id) {
