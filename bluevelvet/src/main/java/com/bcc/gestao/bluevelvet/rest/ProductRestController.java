@@ -28,8 +28,9 @@ public class ProductRestController {
 
      @PutMapping("/products")
     public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
-        Product updatedProduct = productService.save(productVO);
-        return ResponseEntity.status(201).body(updatedProduct);
+         Product updatedProduct = productService.save(productVO);
+         return ResponseEntity.status(201).body(updatedProduct);
+    }
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> findAll() {
