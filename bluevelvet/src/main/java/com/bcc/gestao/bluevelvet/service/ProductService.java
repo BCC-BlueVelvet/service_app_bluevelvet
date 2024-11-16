@@ -19,6 +19,10 @@ public class ProductService {
         return savedProduct;
     }
 
+    public Product findByName(String name) { 
+        return productRepository.findByName(name);
+    }
+  
     public void delete(int id) {
         productRepository.deleteById(id);
     }

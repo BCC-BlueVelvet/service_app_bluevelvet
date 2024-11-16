@@ -5,6 +5,8 @@ import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
 import com.bcc.gestao.bluevelvet.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +30,19 @@ public class ProductRestController {
         return ResponseEntity.status(201).body(product);
     }
 
+    @GetMapping("/products/{name}") 
+    public ResponseEntity<Product> find(@PathVariable String name) {
+        Product product = productService.findByName(name);
+        return ResponseEntity.status(200).body(product);
+    }
+      
     @DeleteMapping("/products/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
         productService.delete(id);  
         return ResponseEntity.status(204).build();  
     }
    
-     @PutMapping("/products")
+    @PutMapping("/products")
     public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
          Product updatedProduct = productService.save(productVO);
          return ResponseEntity.status(201).body(updatedProduct);
