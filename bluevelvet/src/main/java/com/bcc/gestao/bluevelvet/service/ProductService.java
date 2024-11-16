@@ -1,5 +1,6 @@
 package com.bcc.gestao.bluevelvet.service;
 
+import com.bcc.gestao.bluevelvet.exception.ProductConflictException;
 import com.bcc.gestao.bluevelvet.model.entity.Product;
 import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
 import com.bcc.gestao.bluevelvet.repository.ProductRepository;
@@ -15,11 +16,12 @@ public class ProductService {
 
     public Product save (ProductVO productVO){
         Product product = productVO.toEntity();
-        System.out.println(productRepository.existsByNameAndBrandAndCategoryAndPrice(
-                product.getName(), product.getBrand(), product.getCategory(), product.getPrice()
-        ));
-        Product savedProduct = productRepository.save(product);
-        return savedProduct;
+        boolean conflict = productRepository.existsByNameAndBrandAndCategoryAndPrice(
+                product.getName(), product.getBrand(), product.getCategory(), product.getPrice());
+        if (conflict) {
+            throw new ProductConflictException("The product already exists.");
+        }
+        return productRepository.save(product);
     }
 
     public Product findByName(String name) { 
