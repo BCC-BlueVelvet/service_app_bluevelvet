@@ -31,9 +31,9 @@ public class ProductRestController {
     }
 
     @GetMapping("/products/{name}") 
-    public ResponseEntity<Product> find(@PathVariable String name) {
-        Product product = productService.findByName(name);
-        return ResponseEntity.status(200).body(product);
+    public ResponseEntity<List<Product>> find(@PathVariable String name) {
+        List<Product> products = productService.findByName(name);
+        return ResponseEntity.status(200).body(products);
     }
       
     @DeleteMapping("/products/{id}")
@@ -44,7 +44,7 @@ public class ProductRestController {
    
     @PutMapping("/products")
     public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
-         Product updatedProduct = productService.save(productVO);
+         Product updatedProduct = productService.update(productVO);
          return ResponseEntity.status(201).body(updatedProduct);
     }
 
