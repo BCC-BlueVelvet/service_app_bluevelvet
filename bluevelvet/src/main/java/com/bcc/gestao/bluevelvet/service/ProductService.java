@@ -15,12 +15,15 @@ public class ProductService {
 
     public Product save (ProductVO productVO){
         Product product = productVO.toEntity();
+        System.out.println(productRepository.existsByNameAndBrandAndCategoryAndPrice(
+                product.getName(), product.getBrand(), product.getCategory(), product.getPrice()
+        ));
         Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
 
     public Product findByName(String name) { 
-        return productRepository.findByName(name);
+        return productRepository.findByName(name).get();
     }
   
     public void delete(int id) {
