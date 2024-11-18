@@ -26,12 +26,13 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product update(ProductVO productVO) {
+    public Product update(int id, ProductVO productVO) {
         Product product = productVO.toEntity();
-        Optional<Product> dbProduct = productRepository.findById(product.getId());
+        Optional<Product> dbProduct = productRepository.findById(id);
         if(dbProduct.isEmpty()) {
             throw new ProductNotFoundException("Product not exists to update.");
         }
+        product.setId(id);
         return productRepository.save(product);
     }
 
