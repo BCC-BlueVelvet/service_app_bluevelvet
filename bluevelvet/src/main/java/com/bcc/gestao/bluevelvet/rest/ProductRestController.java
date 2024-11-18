@@ -2,6 +2,7 @@ package com.bcc.gestao.bluevelvet.rest;
 
 import com.bcc.gestao.bluevelvet.model.entity.Product;
 import com.bcc.gestao.bluevelvet.model.vo.ProductVO;
+import com.bcc.gestao.bluevelvet.rest.swagger.ProductRestControllerSwagger;
 import com.bcc.gestao.bluevelvet.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,37 +19,36 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
-public class ProductRestController {
+public class ProductRestController implements ProductRestControllerSwagger {
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/products")
+    @Override
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO) {
        Product product = productService.save(productVO);
         return ResponseEntity.status(201).body(product);
     }
 
-    @GetMapping("/products/{name}") 
+    @Override
     public ResponseEntity<List<Product>> find(@PathVariable String name) {
         List<Product> products = productService.findByName(name);
         return ResponseEntity.status(200).body(products);
     }
-      
-    @DeleteMapping("/products/{id}")
+
+    @Override
     public ResponseEntity<?> delete(@PathVariable int id) {
         productService.delete(id);  
         return ResponseEntity.status(204).build();  
     }
-   
-    @PutMapping("/products/{id}")
+
+    @Override
     public ResponseEntity<Product> update(@PathVariable int id, @RequestBody ProductVO productVO) {
          Product updatedProduct = productService.update(id, productVO);
          return ResponseEntity.status(201).body(updatedProduct);
     }
 
-    @GetMapping("/products")
+    @Override
     public ResponseEntity<List<Product>> findAll() {
         List<Product> products = productService.findAll();
         return ResponseEntity.status(200).body(products);
