@@ -42,9 +42,9 @@ public class ProductRestController {
         return ResponseEntity.status(204).build();  
     }
    
-    @PutMapping("/products")
-    public ResponseEntity<Product> update(@RequestBody ProductVO productVO) {
-         Product updatedProduct = productService.update(productVO);
+    @PutMapping("/products/{id}")
+    public ResponseEntity<Product> update(@PathVariable int id, @RequestBody ProductVO productVO) {
+         Product updatedProduct = productService.update(id, productVO);
          return ResponseEntity.status(201).body(updatedProduct);
     }
 
