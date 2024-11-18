@@ -24,19 +24,23 @@ import java.util.List;
 public interface ProductRestControllerSwagger {
 
     @PostMapping("/products")
+    @Operation(summary = "Save one product", tags = {"Product"})
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO);
 
     @GetMapping("/products/{name}")
+    @Operation(summary = "Get list of products by name", tags = {"Product"})
     public ResponseEntity<List<Product>> find(@PathVariable String name);
 
     @DeleteMapping("/products/{id}")
+    @Operation(summary = "Delete one product", tags = {"Product"})
     public ResponseEntity<?> delete(@PathVariable int id);
 
     @PutMapping("/products/{id}")
+    @Operation(summary = "Update one product by id", tags = {"Product"})
     public ResponseEntity<Product> update(@PathVariable int id, @RequestBody ProductVO productVO);
 
     @GetMapping("/products")
-    @Operation(responses = {
+    @Operation(summary = "Get a list of all products", tags = {"Product"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Product.class)))})
