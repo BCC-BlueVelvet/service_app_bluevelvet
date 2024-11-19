@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,13 +32,20 @@ public interface ProductRestControllerSwagger {
     })
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO);
 
-    @GetMapping("/products/{name}")
+    @GetMapping("/products")
     @Operation(summary = "Get list of products by name", tags = {"Product"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Product.class))),
             @ApiResponse(description = "Bad request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Not found", responseCode = "404", content = @Content)
     })
-    public ResponseEntity<List<Product>> find(@PathVariable String name);
+    public ResponseEntity<List<Product>> find(@RequestParam String name);
+
+    @GetMapping("/products/{id}")
+    @Operation(summary = "Get one product by id", tags = {"Product"}, responses = {
+            @ApiResponse(description = "Success", responseCode = "200", content = @Content),
+            @ApiResponse(description = "Not found", responseCode = "404", content = @Content)
+    })
+    public ResponseEntity<Product> findById(@PathVariable int id);
 
     @DeleteMapping("/products/{id}")
     @Operation(summary = "Delete one product by id", tags = {"Product"}, responses = {
