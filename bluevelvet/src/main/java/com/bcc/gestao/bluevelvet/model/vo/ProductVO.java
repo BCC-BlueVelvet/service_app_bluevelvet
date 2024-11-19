@@ -1,69 +1,47 @@
 package com.bcc.gestao.bluevelvet.model.vo;
 
 import com.bcc.gestao.bluevelvet.model.entity.Product;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter
 public class ProductVO {
 
     private int id;
+
     private String name;
+
     private String brand;
+
     private String category;
+
     private double price;
 
-    // Construtor padrão
-    public ProductVO() {}
+    private String pictureUrl;
 
-    // Construtor com todos os atributos
-    public ProductVO(int id, String name, String brand, String category, double price) {
-        this.id = id;
-        this.name = name;
-        this.brand = brand;
-        this.category = category;
-        this.price = price;
-    }
+    private String shortDescription;
 
-    // Getters e Setters
-    public int getId() {
-        return id;
-    }
+    private String fullDescription;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private boolean stock;
 
-    public String getName() {
-        return name;
-    }
+    private double length;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private double width;
 
-    public String getBrand() {
-        return brand;
-    }
+    private double height;
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    private double weight;
 
-    public String getCategory() {
-        return category;
-    }
+    private double cost;
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    private String detailName;
 
-    public double getPrice() {
-        return price;
-    }
+    private String detailValue;
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    // Função para transformar o VO em uma entidade Product
     public Product toEntity() {
         Product product = new Product();
         product.setId(this.id);
@@ -71,17 +49,17 @@ public class ProductVO {
         product.setBrand(this.brand);
         product.setCategory(this.category);
         product.setPrice(this.price);
+        product.setPictureUrl(this.pictureUrl);
+        product.setShortDescription(this.shortDescription);
+        product.setFullDescription(this.fullDescription);
+        product.setStock(this.stock);
+        product.setLength(this.length);
+        product.setWidth(this.width);
+        product.setHeight(this.height);
+        product.setWeight(this.weight);
+        product.setCost(this.cost);
+        product.setDetailName(this.detailName);
+        product.setDetailValue(this.detailValue);
         return product;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductVO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", category='" + category + '\'' +
-                ", price=" + price +
-                '}';
     }
 }
