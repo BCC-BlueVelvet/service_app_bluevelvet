@@ -43,6 +43,14 @@ public class ProductService {
         }
         return products;
     }
+
+    public Product findById(int id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if(optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product not found.");
+        }
+        return optionalProduct.get();
+    }
   
     public void delete(int id) {
         Optional<Product> product = productRepository.findById(id);
