@@ -18,11 +18,6 @@ public class ProductService {
 
     public Product save (ProductVO productVO){
         Product product = productVO.toEntity();
-        boolean conflict = productRepository.existsByNameAndBrandAndCategoryAndPrice(
-                product.getName(), product.getBrand(), product.getCategory(), product.getPrice());
-        if (conflict) {
-            throw new ProductConflictException("The product already exists.");
-        }
         return productRepository.save(product);
     }
 
