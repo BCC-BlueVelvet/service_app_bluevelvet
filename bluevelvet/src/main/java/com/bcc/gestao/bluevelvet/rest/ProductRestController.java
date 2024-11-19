@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -31,9 +32,15 @@ public class ProductRestController implements ProductRestControllerSwagger {
     }
 
     @Override
-    public ResponseEntity<List<Product>> find(@PathVariable String name) {
+    public ResponseEntity<List<Product>> find(@RequestParam String name) {
         List<Product> products = productService.findByName(name);
         return ResponseEntity.status(200).body(products);
+    }
+
+    @Override
+    public ResponseEntity<Product> findById(@PathVariable int id) {
+        Product product = productService.findById(id);
+        return ResponseEntity.status(200).body(product);
     }
 
     @Override

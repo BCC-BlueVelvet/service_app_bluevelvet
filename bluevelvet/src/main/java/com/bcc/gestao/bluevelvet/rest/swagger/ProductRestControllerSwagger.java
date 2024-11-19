@@ -32,7 +32,7 @@ public interface ProductRestControllerSwagger {
     })
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO);
 
-    @GetMapping("/products")
+    @GetMapping("/products/find")
     @Operation(summary = "Get list of products by name", tags = {"Product"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Product.class))),
             @ApiResponse(description = "Bad request", responseCode = "400", content = @Content),
