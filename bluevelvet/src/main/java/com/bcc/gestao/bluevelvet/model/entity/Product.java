@@ -1,8 +1,14 @@
 package com.bcc.gestao.bluevelvet.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter
 @Table(name = "product")
 public class Product {
 
@@ -11,79 +17,39 @@ public class Product {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "brand")
     private String brand;
 
-    @Column(name = "category")
     private String category;
 
-    @Column(name = "price")
     private double price;
 
-    // Construtor padrão
-    public Product() {}
+    @Column(name = "picture_url")
+    private String pictureUrl;
 
-    // Construtor com parâmetros
-    public Product(String name, String brand, String category, double price) {
-        this.name = name;
-        this.brand = brand;
-        this.category = category;
-        this.price = price;
-    }
+    @Column(name = "short_description")
+    private String shortDescription;
 
-    // Getters e Setters
-    public int getId() {
-        return id;
-    }
+    @Column(name = "full_description")
+    private String fullDescription;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private boolean stock;
 
-    public String getName() {
-        return name;
-    }
+    private double length;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private double width;
 
-    public String getBrand() {
-        return brand;
-    }
+    private double height;
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    private double weight;
 
-    public String getCategory() {
-        return category;
-    }
+    private double cost;
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    @Column(name = "detail_name")
+    private String detailName;
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", category='" + category + '\'' +
-                ", price=" + price +
-                '}';
-    }
+    @Column(name = "detail_value")
+    private String detailValue;
 }
 

@@ -27,8 +27,7 @@ public interface ProductRestControllerSwagger {
     @PostMapping("/products")
     @Operation(summary = "Save one product", tags = {"Product"}, responses = {
             @ApiResponse(description = "Created", responseCode = "201", content = @Content),
-            @ApiResponse(description = "Bad request", responseCode = "400", content = @Content),
-            @ApiResponse(description = "Conflict", responseCode = "409", content = @Content)
+            @ApiResponse(description = "Bad request", responseCode = "400", content = @Content)
     })
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO);
 

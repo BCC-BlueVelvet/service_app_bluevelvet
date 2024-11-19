@@ -10,6 +10,4 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     public List<Product> findByName(String name);
-
-    boolean existsByNameAndBrandAndCategoryAndPrice(String name, String brand, String category, double price);
 }
