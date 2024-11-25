@@ -7,17 +7,11 @@ import lombok.Setter;
 
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
-public class UserVO {
+public class RoleVO {
 
     private int id;
 
-    private String firstName;
+    private String name;
 
-    private String lastName;
-
-    private String email;
-
-    private String password;
-
-    private boolean enabled;
+    private String description;
 }
