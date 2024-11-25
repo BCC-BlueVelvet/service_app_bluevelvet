@@ -1,5 +1,6 @@
 package com.bcc.gestao.bluevelvet.model.entity;
 
+import com.bcc.gestao.bluevelvet.model.vo.RoleVO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,4 +42,10 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name="user_id")
     )
     private List<User> users;
+
+    public Role(RoleVO roleVO) {
+        this.id = roleVO.getId();
+        this.name = roleVO.getName();
+        this.description = roleVO.getDescription();
+    }
 }
