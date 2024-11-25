@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,4 +49,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private List<Role> roles;
+
+    public void addRoles(Role role) {
+        if(roles.isEmpty()) {
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
+    }
 }

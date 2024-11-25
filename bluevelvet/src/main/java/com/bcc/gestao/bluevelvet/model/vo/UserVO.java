@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
 public class UserVO {
@@ -20,4 +23,13 @@ public class UserVO {
     private String password;
 
     private boolean enabled;
+
+    private List<RoleVO> roleVOList;
+
+    public void addRoles(RoleVO roleVO) {
+        if(roleVOList.isEmpty()) {
+            roleVOList = new ArrayList<>();
+        }
+        roleVOList.add(roleVO);
+    }
 }
