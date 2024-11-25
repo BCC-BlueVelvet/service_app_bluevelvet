@@ -1,5 +1,6 @@
 package com.bcc.gestao.bluevelvet.model.entity;
 
+import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,5 +56,14 @@ public class User {
             roles = new ArrayList<>();
         }
         roles.add(role);
+    }
+
+    public User(UserVO userVO) {
+        this.id = userVO.getId();
+        this.firstName = userVO.getFirstName();
+        this.lastName = userVO.getLastName();
+        this.email = userVO.getEmail();
+        this.password = userVO.getPassword();
+        this.enabled = userVO.isEnabled();
     }
 }

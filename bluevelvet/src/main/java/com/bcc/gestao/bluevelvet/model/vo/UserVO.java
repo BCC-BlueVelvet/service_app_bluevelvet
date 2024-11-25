@@ -1,5 +1,6 @@
 package com.bcc.gestao.bluevelvet.model.vo;
 
+import com.bcc.gestao.bluevelvet.model.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,5 +32,14 @@ public class UserVO {
             roleVOList = new ArrayList<>();
         }
         roleVOList.add(roleVO);
+    }
+
+    public UserVO(User user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.enabled = user.isEnabled();
     }
 }
