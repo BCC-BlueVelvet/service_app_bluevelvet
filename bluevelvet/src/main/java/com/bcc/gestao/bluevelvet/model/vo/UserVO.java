@@ -2,6 +2,7 @@ package com.bcc.gestao.bluevelvet.model.vo;
 
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,14 +26,7 @@ public class UserVO {
 
     private boolean enabled;
 
-    private List<RoleVO> roleVOList;
-
-    public void addRoles(RoleVO roleVO) {
-        if(roleVOList.isEmpty()) {
-            roleVOList = new ArrayList<>();
-        }
-        roleVOList.add(roleVO);
-    }
+    private List<String> roles;
 
     public UserVO(User user) {
         this.id = user.getId();
@@ -41,5 +35,12 @@ public class UserVO {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.enabled = user.isEnabled();
+    }
+
+    public void addRoles(String roleName) {
+        if(roles == null) {
+            roles = new ArrayList<>();
+        }
+        roles.add(roleName);
     }
 }
