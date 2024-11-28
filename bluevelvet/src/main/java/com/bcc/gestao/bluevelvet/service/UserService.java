@@ -4,7 +4,6 @@ import com.bcc.gestao.bluevelvet.exception.UserNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.exception.RoleNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Role;
-import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import com.bcc.gestao.bluevelvet.repository.RoleRepository;
 import com.bcc.gestao.bluevelvet.repository.UserRepository;
