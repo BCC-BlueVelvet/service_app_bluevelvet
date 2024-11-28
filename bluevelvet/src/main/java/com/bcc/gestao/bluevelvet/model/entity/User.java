@@ -43,9 +43,7 @@ public class User {
 
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name="users_roles",
             joinColumns = @JoinColumn(name="user_id"),

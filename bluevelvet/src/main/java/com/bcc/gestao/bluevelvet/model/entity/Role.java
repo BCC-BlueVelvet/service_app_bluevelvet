@@ -34,9 +34,8 @@ public class Role {
 
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH}
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH}
     )
     @JoinTable(
             name="users_roles",
