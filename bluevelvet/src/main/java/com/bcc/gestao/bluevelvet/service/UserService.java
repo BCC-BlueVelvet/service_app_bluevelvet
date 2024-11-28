@@ -27,6 +27,31 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
+    public UserVO update(int id, UserVO userVO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found."));
+
+        user.setFirstName(userVO.getFirstName());
+        user.setLastName(userVO.getLastName());
+        user.setEmail(userVO.getEmail());
+        user.setPassword(userVO.getPassword());
+        user.setEnabled(userVO.isEnabled());
+
+        user.getRoles().clear();
+        for (String roleName : userVO.getRoles()) {
+            Role role = roleRepository.findByName(roleName)
+                    .orElseThrow(() -> new RoleNotFoundException("Role not exists."));
+            user.addRoles(role);
+        }
+
+        User updatedUser = userRepository.save(user);
+
+        UserVO updatedUserVO = new UserVO(updatedUser);
+        updatedUser.getRoles().forEach(role -> updatedUserVO.addRoles(role.getName()));
+
+        return updatedUserVO;
+    }
+
     public UserVO save(UserVO userVO) {
         userVO.setId(0);
         User user = new User(userVO);
