@@ -1,6 +1,5 @@
 package com.bcc.gestao.bluevelvet.service;
 
-import com.bcc.gestao.bluevelvet.exception.ProductConflictException;
 import com.bcc.gestao.bluevelvet.exception.ProductNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Product;
 import com.bcc.gestao.bluevelvet.model.vo.ProductVO;

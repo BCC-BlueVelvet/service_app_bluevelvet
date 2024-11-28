@@ -4,14 +4,16 @@ import com.bcc.gestao.bluevelvet.exception.UserNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.exception.RoleNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Role;
-import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import com.bcc.gestao.bluevelvet.repository.RoleRepository;
 import com.bcc.gestao.bluevelvet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -41,6 +43,23 @@ public class UserService {
             dbUserVO.addRoles(dbRole.getName());
         }
         return dbUserVO;
+    }
+
+    public List<UserVO> findAll() {
+        List<User> users = userRepository.findAll();
+        List<UserVO> dbUsersVO = new ArrayList<>();
+        for(User user : users) {
+            List<Role> roles = user.getRoles();
+            List<String> rolesName = roles.stream()
+                    .map(Role::getName)
+                    .collect(Collectors.toList());
+            UserVO dbUserVO = new UserVO(user);
+            for(String roleName : rolesName) {
+                dbUserVO.addRoles(roleName);
+            }
+            dbUsersVO.add(dbUserVO);
+        }
+        return dbUsersVO;
     }
   
     public void delete(int id) {
