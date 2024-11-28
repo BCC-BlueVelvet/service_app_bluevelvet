@@ -86,6 +86,18 @@ public class UserService {
         }
         return dbUsersVO;
     }
+
+    public UserVO findById(int id) {
+        Optional<User> dbUser = userRepository.findById(id);
+        if(dbUser.isEmpty()) {
+            throw new UserNotFoundException("User not exists.");
+        }
+        UserVO dbUserVO = new UserVO(dbUser.get());
+        for (Role role : dbUser.get().getRoles()) {
+            dbUserVO.addRoles(role.getName());
+        }
+        return dbUserVO;
+    }
   
     public void delete(int id) {
         Optional<User> user = userRepository.findById(id);
