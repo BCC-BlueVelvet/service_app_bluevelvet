@@ -44,6 +44,12 @@ public class UserRestController {
         List<UserVO> dbUserVO = userService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(dbUserVO);
     }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserVO> findById(@PathVariable int id) {
+        UserVO dbUserVO = userService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(dbUserVO);
+    }
   
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
