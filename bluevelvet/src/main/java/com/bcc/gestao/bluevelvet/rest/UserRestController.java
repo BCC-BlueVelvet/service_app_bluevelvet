@@ -6,10 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.bcc.gestao.bluevelvet.model.vo.UserVO;
-import com.bcc.gestao.bluevelvet.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +30,7 @@ public class UserRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dbUserVO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<UserVO> updateUser(@PathVariable int id, @RequestBody UserVO userVO) {
         UserVO updatedUser = userService.update(id, userVO);
         return ResponseEntity.ok(updatedUser);
