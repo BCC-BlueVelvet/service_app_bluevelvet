@@ -1,5 +1,7 @@
 package com.bcc.gestao.bluevelvet.service;
 
+import com.bcc.gestao.bluevelvet.exception.UserNotFoundException;
+import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.exception.RoleNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Role;
 import com.bcc.gestao.bluevelvet.model.entity.User;
@@ -13,7 +15,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-
+  
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
@@ -39,5 +41,13 @@ public class UserService {
             dbUserVO.addRoles(dbRole.getName());
         }
         return dbUserVO;
+    }
+  
+    public void delete(int id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found.");
+        }
+        userRepository.deleteById(id);
     }
 }
