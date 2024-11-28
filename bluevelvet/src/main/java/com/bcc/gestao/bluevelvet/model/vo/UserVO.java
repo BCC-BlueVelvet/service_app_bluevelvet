@@ -36,4 +36,11 @@ public class UserVO {
         this.password = user.getPassword();
         this.enabled = user.isEnabled();
     }
+
+    public void addRoles(String roleName) {
+        if(roles == null) {
+            roles = new ArrayList<>();
+        }
+        roles.add(roleName);
+    }
 }

@@ -1,6 +1,6 @@
 package com.bcc.gestao.bluevelvet.rest;
 
-import com.bcc.gestao.bluevelvet.model.entity.User;
+
 import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import com.bcc.gestao.bluevelvet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> save(@RequestBody UserVO userVO) {
-        User user = userService.save(userVO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<UserVO> save(@RequestBody UserVO userVO) {
+        UserVO dbUserVO = userService.save(userVO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dbUserVO);
     }
 }

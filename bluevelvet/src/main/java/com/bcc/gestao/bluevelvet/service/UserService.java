@@ -23,7 +23,7 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public User save(UserVO userVO) {
+    public UserVO save(UserVO userVO) {
         userVO.setId(0);
         User user = new User(userVO);
         for(String roleName : userVO.getRoles()) {
@@ -33,8 +33,11 @@ public class UserService {
             }
             user.addRoles(optionalRole.get());
         }
-        System.out.println(user.getRoles());
-        System.out.println(user.toString());
-        return userRepository.save(user);
+        User dbUser = userRepository.save(user);
+        UserVO dbUserVO = new UserVO(dbUser);
+        for(Role dbRole : dbUser.getRoles()) {
+            dbUserVO.addRoles(dbRole.getName());
+        }
+        return dbUserVO;
     }
 }
