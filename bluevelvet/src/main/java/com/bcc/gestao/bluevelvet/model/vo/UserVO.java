@@ -26,14 +26,7 @@ public class UserVO {
 
     private boolean enabled;
 
-    private List<RoleVO> roleVOList;
-
-    public void addRoles(RoleVO roleVO) {
-        if(roleVOList.isEmpty()) {
-            roleVOList = new ArrayList<>();
-        }
-        roleVOList.add(roleVO);
-    }
+    private List<String> roles;
 
     public UserVO(User user) {
         this.id = user.getId();
