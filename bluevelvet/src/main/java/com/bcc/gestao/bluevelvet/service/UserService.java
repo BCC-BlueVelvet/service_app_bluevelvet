@@ -56,6 +56,7 @@ public class UserService {
     }
 
     public UserVO save(UserVO userVO) {
+        validateUser(userVO);
 
         userVO.setId(0);
         User user = new User(userVO);
