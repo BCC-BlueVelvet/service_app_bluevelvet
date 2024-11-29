@@ -18,36 +18,42 @@ public class ProductRestController implements ProductRestControllerSwagger {
     @Autowired
     private ProductService productService;
 
+    // POST -> /products
     @Override
     public ResponseEntity<Product> save (@RequestBody ProductVO productVO) {
        Product product = productService.save(productVO);
         return ResponseEntity.status(201).body(product);
     }
 
+    // GET -> /products/{name}
     @Override
     public ResponseEntity<List<Product>> find(@RequestParam String name) {
         List<Product> products = productService.findByName(name);
         return ResponseEntity.status(200).body(products);
     }
 
+    // GET -> /products/{id}
     @Override
     public ResponseEntity<Product> findById(@PathVariable int id) {
         Product product = productService.findById(id);
         return ResponseEntity.status(200).body(product);
     }
 
+    // DELETE -> /products/{id}
     @Override
     public ResponseEntity<?> delete(@PathVariable int id) {
         productService.delete(id);  
         return ResponseEntity.status(204).build();  
     }
 
+    // PUT -> /products/{id}
     @Override
     public ResponseEntity<Product> update(@PathVariable int id, @RequestBody ProductVO productVO) {
          Product updatedProduct = productService.update(id, productVO);
          return ResponseEntity.status(201).body(updatedProduct);
     }
 
+    // GET -> /products
     @Override
     public ResponseEntity<List<Product>> findAll() {
         List<Product> products = productService.findAll();

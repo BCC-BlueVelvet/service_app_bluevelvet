@@ -1,5 +1,7 @@
 package com.bcc.gestao.bluevelvet.service;
 
+import com.bcc.gestao.bluevelvet.exception.UserConflictException;
+import com.bcc.gestao.bluevelvet.exception.UserInvalidException;
 import com.bcc.gestao.bluevelvet.exception.UserNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.exception.RoleNotFoundException;
@@ -28,6 +30,7 @@ public class UserService {
     }
 
     public UserVO update(int id, UserVO userVO) {
+        validateUser(userVO);
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found."));
 
@@ -53,6 +56,12 @@ public class UserService {
     }
 
     public UserVO save(UserVO userVO) {
+
+        if(userRepository.existsByEmail(userVO.getEmail())) {
+            throw new UserConflictException("This email already has an account.");
+        }
+        validateUser(userVO);
+
         userVO.setId(0);
         User user = new User(userVO);
         for(String roleName : userVO.getRoles()) {
@@ -62,11 +71,11 @@ public class UserService {
             }
             user.addRoles(optionalRole.get());
         }
+
         User dbUser = userRepository.save(user);
         UserVO dbUserVO = new UserVO(dbUser);
-        for(Role dbRole : dbUser.getRoles()) {
-            dbUserVO.addRoles(dbRole.getName());
-        }
+        dbUser.getRoles().forEach(role -> dbUserVO.addRoles(role.getName()));
+
         return dbUserVO;
     }
 
@@ -74,14 +83,11 @@ public class UserService {
         List<User> users = userRepository.findAll();
         List<UserVO> dbUsersVO = new ArrayList<>();
         for(User user : users) {
-            List<Role> roles = user.getRoles();
-            List<String> rolesName = roles.stream()
+            List<String> rolesName = user.getRoles().stream()
                     .map(Role::getName)
                     .collect(Collectors.toList());
             UserVO dbUserVO = new UserVO(user);
-            for(String roleName : rolesName) {
-                dbUserVO.addRoles(roleName);
-            }
+            user.getRoles().forEach(role -> dbUserVO.addRoles(role.getName()));
             dbUsersVO.add(dbUserVO);
         }
         return dbUsersVO;
@@ -105,5 +111,18 @@ public class UserService {
             throw new UserNotFoundException("User not found.");
         }
         userRepository.deleteById(id);
+    }
+
+    public void validateUser(UserVO userVO) {
+
+        if(userVO.getFirstName() == null || !userVO.getFirstName().matches("[a-zA-Z]+") ||
+                userVO.getFirstName().length() < 2 || userVO.getLastName() == null ||
+                !userVO.getLastName().matches("[a-zA-Z]+") || userVO.getLastName().length() < 2) {
+            throw new UserInvalidException("Invalid name");
+        }
+
+        if(userVO.getEmail() == null || userVO.getEmail().length() < 5) {
+            throw new UserInvalidException("Email invalid.");
+        }
     }
 }
