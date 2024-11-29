@@ -56,6 +56,10 @@ public class UserService {
     }
 
     public UserVO save(UserVO userVO) {
+
+        if(userRepository.existsByEmail(userVO.getEmail())) {
+            throw new UserConflictException("This email already has an account.");
+        }
         validateUser(userVO);
 
         userVO.setId(0);
@@ -110,9 +114,6 @@ public class UserService {
     }
 
     public void validateUser(UserVO userVO) {
-        if(userRepository.existsByEmail(userVO.getEmail())) {
-            throw new UserConflictException("This email already has an account.");
-        }
 
         if(userVO.getFirstName() == null || !userVO.getFirstName().matches("[a-zA-Z]+") ||
                 userVO.getFirstName().length() < 2 || userVO.getLastName() == null ||
