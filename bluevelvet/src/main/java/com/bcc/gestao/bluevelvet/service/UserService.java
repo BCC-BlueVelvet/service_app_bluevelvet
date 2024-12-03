@@ -10,6 +10,7 @@ import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import com.bcc.gestao.bluevelvet.repository.RoleRepository;
 import com.bcc.gestao.bluevelvet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class UserService {
   
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserVO update(int id, UserVO userVO) {
@@ -39,6 +42,10 @@ public class UserService {
         user.setEmail(userVO.getEmail());
         user.setPassword(userVO.getPassword());
         user.setEnabled(userVO.isEnabled());
+
+        if (!userVO.getPassword().equals(user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(userVO.getPassword()));
+        }
 
         user.getRoles().clear();
         for (String roleName : userVO.getRoles()) {
@@ -62,7 +69,8 @@ public class UserService {
         }
         validateUser(userVO);
 
-        userVO.setId(0);
+        userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
+
         User user = new User(userVO);
         for(String roleName : userVO.getRoles()) {
             Optional<Role> optionalRole = roleRepository.findByName(roleName);
