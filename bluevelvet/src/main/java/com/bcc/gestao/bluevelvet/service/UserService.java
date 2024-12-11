@@ -47,6 +47,8 @@ public class UserService {
             user.setPassword(passwordEncoder.encode(userVO.getPassword()));
         }
 
+        user.setEnabled(userVO.isEnabled());
+
         user.getRoles().clear();
         for (String roleName : userVO.getRoles()) {
             Role role = roleRepository.findByName(roleName)
