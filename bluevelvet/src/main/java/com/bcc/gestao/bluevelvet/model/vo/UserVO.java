@@ -1,16 +1,13 @@
 package com.bcc.gestao.bluevelvet.model.vo;
 
-import com.bcc.gestao.bluevelvet.model.entity.Role;
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter

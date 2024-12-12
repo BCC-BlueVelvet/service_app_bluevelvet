@@ -21,6 +21,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(
                 configurer -> configurer
+                        .requestMatchers( "/api/v1/credentials").permitAll()
+                        .requestMatchers( "/api/v1/credentials/**").permitAll()
                         .requestMatchers( "/api/v1/users").permitAll()
                         .requestMatchers( "/api/v1/users/**").permitAll()
                         .requestMatchers( "/api/v1/products").permitAll()

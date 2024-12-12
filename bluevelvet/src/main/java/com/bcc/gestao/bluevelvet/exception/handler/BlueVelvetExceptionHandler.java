@@ -1,5 +1,6 @@
 package com.bcc.gestao.bluevelvet.exception.handler;
 
+import com.bcc.gestao.bluevelvet.exception.CredentialAuthenticationException;
 import com.bcc.gestao.bluevelvet.exception.ProductConflictException;
 import com.bcc.gestao.bluevelvet.exception.ProductInvalidAttributeException;
 import com.bcc.gestao.bluevelvet.exception.ProductNotFoundException;
@@ -51,5 +52,10 @@ public class BlueVelvetExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(RoleNotFoundException.class)
     public final ResponseEntity<String> handleRoleNotFound(RoleNotFoundException exc) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(CredentialAuthenticationException.class)
+    public final ResponseEntity<String> handleCredentialAuthentication(CredentialAuthenticationException exc) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exc.getMessage());
     }
 }

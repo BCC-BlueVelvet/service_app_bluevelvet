@@ -1,11 +1,13 @@
 package com.bcc.gestao.bluevelvet.service;
 
+import com.bcc.gestao.bluevelvet.exception.CredentialAuthenticationException;
 import com.bcc.gestao.bluevelvet.exception.UserConflictException;
 import com.bcc.gestao.bluevelvet.exception.UserInvalidException;
 import com.bcc.gestao.bluevelvet.exception.UserNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.User;
 import com.bcc.gestao.bluevelvet.exception.RoleNotFoundException;
 import com.bcc.gestao.bluevelvet.model.entity.Role;
+import com.bcc.gestao.bluevelvet.model.vo.CredentialVO;
 import com.bcc.gestao.bluevelvet.model.vo.UserVO;
 import com.bcc.gestao.bluevelvet.repository.RoleRepository;
 import com.bcc.gestao.bluevelvet.repository.UserRepository;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -85,6 +88,17 @@ public class UserService {
         dbUser.getRoles().forEach(role -> dbUserVO.addRoles(role.getName()));
 
         return dbUserVO;
+    }
+
+    public List<String> login(CredentialVO credentialVO) {
+        User dbUser = userRepository.findByEmail(credentialVO.getEmail())
+                .orElseThrow(() -> new UserNotFoundException("Email not exists."));
+        if(!passwordEncoder.matches(credentialVO.getPassword(), dbUser.getPassword())) {
+            throw new CredentialAuthenticationException("Invalid password.");
+        }
+        return dbUser.getRoles().stream()
+                .map(Role::getName)
+                .collect(Collectors.toList());
     }
 
     public List<UserVO> findAll() {
